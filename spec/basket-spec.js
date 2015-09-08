@@ -35,4 +35,15 @@ describe('Basket', function () {
         })
 
     });
+
+    describe('.isNull()',function(){
+
+        it('can return a true when basket is null',function(){
+           expect(basket.isNull()).toBe(true);
+        });
+
+        it('can return a false when basket has book',function(){
+           expect(basket.isNull()).toBe(false);
+        });
+    });
 });
