@@ -35,4 +35,17 @@ Basket.prototype.addBook = function (books) {
 };
 
 
+Basket.prototype.isNull = function(){
+
+    var temp = this.container.filter(function(quantity){
+        return quantity > 0;
+    });
+
+    if(temp.length === 0){
+        return true;
+    }
+
+};
+
+
 module.exports = Basket;
