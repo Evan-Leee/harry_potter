@@ -18,10 +18,8 @@ describe('Basket', function () {
 
     describe('.addBook()', function () {
 
-        it('can add the book to basket by the book.type', function () {
-
+        beforeEach(function(){
             var books = [
-                new Book('001'),
                 new Book('001'),
                 new Book('001'),
                 new Book('003'),
@@ -30,9 +28,17 @@ describe('Basket', function () {
             ];
 
             basket.addBook(books);
+        });
 
-            expect(basket.basketBooks.toString()).toBe('3,1,2,0,0');
-        })
+        it('can add the book to basket by the book.type', function () {
+
+            expect(basket.basketBooks.toString()).toBe('2,1,2,0,0');
+        });
+
+        it('after add book ,the bookVarity will have a value',function(){
+
+            expect(basket.bookVarity).toBe(3);
+        });
 
     });
 
