@@ -39,13 +39,13 @@ Basket.prototype.addBook = function (books) {
 
 Basket.prototype.summarize = function(){
 
-    this.bookVarity = this.basketBooks.filter(function (number) {
+    this.bookVarity = this.basketBooks.filter(function (quantity) {
 
-        return number > 0;
+        return quantity > 0;
     }).length;
 
-    this.count = this.basketBooks.filter(function(number){
-        return number === 1;
+    this.count = this.basketBooks.filter(function(quantity){
+        return quantity === 1;
     }).length;
 };
 
