@@ -18,7 +18,7 @@ describe('Basket', function () {
 
     describe('.addBook()', function () {
 
-        beforeEach(function(){
+        it('can add the book to basket by the book.type', function () {
             var books = [
                 new Book('001'),
                 new Book('001'),
@@ -28,18 +28,35 @@ describe('Basket', function () {
             ];
 
             basket.addBook(books);
-        });
-
-        it('can add the book to basket by the book.type', function () {
-
             expect(basket.basketBooks.toString()).toBe('2,1,2,0,0');
         });
 
-        it('after add book ,the bookVarity will have a value',function(){
+    });
 
-            expect(basket.bookVarity).toBe(3);
+    describe('.summarize()', function () {
+
+        beforeEach(function(){
+            var books = [
+                new Book('001'),
+                new Book('001'),
+                new Book('003'),
+                new Book('003'),
+                new Book('002'),
+                new Book('004'),
+                new Book('005')
+            ];
+
+            basket.addBook(books);
+            basket.summarize();
         });
 
+        it('can give bookVarity a value', function () {
+            expect(basket.bookVarity).toBe(5);
+        });
+
+        it('can give count a value',function(){
+            expect(basket.count).toBe(3);
+        })
     });
 
     describe('.isNull()', function () {

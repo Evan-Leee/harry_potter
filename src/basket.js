@@ -4,6 +4,7 @@ function Basket() {
 
     this.basketBooks = [0, 0, 0, 0, 0];
     this.bookVarity = 0;
+    this.count = 0;
 }
 
 Basket.prototype.addBook = function (books) {
@@ -33,12 +34,20 @@ Basket.prototype.addBook = function (books) {
         }
     }
 
+
+};
+
+Basket.prototype.summarize = function(){
+
     this.bookVarity = this.basketBooks.filter(function (number) {
 
         return number > 0;
     }).length;
-};
 
+    this.count = this.basketBooks.filter(function(number){
+        return number === 1;
+    }).length;
+};
 
 Basket.prototype.isNull = function () {
 
