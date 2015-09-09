@@ -33,8 +33,6 @@ Basket.prototype.addBook = function (books) {
             this.basketBooks[4]++;
         }
     }
-
-
 };
 
 Basket.prototype.summarize = function(){
