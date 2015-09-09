@@ -13,7 +13,7 @@ describe('Basket', function () {
 
     it('can new a basket which container has 0 book', function () {
 
-        expect(basket.container.toString()).toBe('0,0,0,0,0');
+        expect(basket.basketBooks.toString()).toBe('0,0,0,0,0');
     });
 
     describe('.addBook()', function () {
@@ -31,7 +31,7 @@ describe('Basket', function () {
 
             basket.addBook(books);
 
-            expect(basket.container.toString()).toBe('3,1,2,0,0');
+            expect(basket.basketBooks.toString()).toBe('3,1,2,0,0');
         })
 
     });
@@ -44,7 +44,12 @@ describe('Basket', function () {
 
         it('can return a false when basket has book', function () {
             var books = [
-                new Book('001')
+                new Book('001'),
+                new Book('001'),
+                new Book('001'),
+                new Book('003'),
+                new Book('003'),
+                new Book('002')
             ];
 
             basket.addBook(books);

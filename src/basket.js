@@ -2,7 +2,8 @@
 
 function Basket() {
 
-    this.container = [0, 0, 0, 0, 0];
+    this.basketBooks = [0, 0, 0, 0, 0];
+    this.bookVarity = 0;
 }
 
 Basket.prototype.addBook = function (books) {
@@ -12,23 +13,23 @@ Basket.prototype.addBook = function (books) {
         var book = books[i];
 
         if(book.type === '001'){
-            this.container[0]++;
+            this.basketBooks[0]++;
         }
 
         if(book.type === '002'){
-            this.container[1]++;
+            this.basketBooks[1]++;
         }
 
         if(book.type === '003'){
-            this.container[2]++;
+            this.basketBooks[2]++;
         }
 
         if(book.type === '004'){
-            this.container[3]++;
+            this.basketBooks[3]++;
         }
 
         if(book.type === '005'){
-            this.container[4]++;
+            this.basketBooks[4]++;
         }
     }
 
@@ -37,7 +38,7 @@ Basket.prototype.addBook = function (books) {
 
 Basket.prototype.isNull = function(){
 
-    var temp = this.container.filter(function(quantity){
+    var temp = this.basketBooks.filter(function(quantity){
         return quantity > 0;
     });
 
