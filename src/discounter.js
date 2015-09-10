@@ -9,3 +9,6 @@ Discounter.prototype.calculate = function () {
     //TODO: calculate the total discount
 };
 
+Discounter.prototype.discount = function (bookVarity, count) {
+    //TODO: discount each group
+};
