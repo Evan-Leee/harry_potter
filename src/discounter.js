@@ -5,3 +5,7 @@ function Discounter() {
     this.total = 0;
 }
 
+Discounter.prototype.calculate = function () {
+    //TODO: calculate the total discount
+};
+
