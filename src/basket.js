@@ -4,7 +4,8 @@ function Basket() {
 
     this.basketBooks = [0, 0, 0, 0, 0];
     this.bookVarity = 0;
-    this.count = 0;
+    this.totalQuantity = 0;
+
 }
 
 Basket.prototype.addBook = function (books) {
@@ -13,37 +14,36 @@ Basket.prototype.addBook = function (books) {
 
         var book = books[i];
 
-        if (book.type === '001') {
+        if (book.type === 'first') {
             this.basketBooks[0]++;
+            this.totalQuantity++;
         }
 
-        if (book.type === '002') {
+        if (book.type === 'second') {
             this.basketBooks[1]++;
+            this.totalQuantity++;
         }
 
-        if (book.type === '003') {
+        if (book.type === 'third') {
             this.basketBooks[2]++;
+            this.totalQuantity++;
         }
 
-        if (book.type === '004') {
+        if (book.type === 'fourth') {
             this.basketBooks[3]++;
+            this.totalQuantity++;
         }
 
-        if (book.type === '005') {
+        if (book.type === 'fifth') {
             this.basketBooks[4]++;
+            this.totalQuantity++;
         }
     }
 };
 
-Basket.prototype.summarize = function(){
-
+Basket.prototype.updateVarity = function () {
     this.bookVarity = this.basketBooks.filter(function (quantity) {
-
         return quantity > 0;
-    }).length;
-
-    this.count = this.basketBooks.filter(function(quantity){
-        return quantity === 1;
     }).length;
 };
 
@@ -55,6 +55,18 @@ Basket.prototype.isNull = function () {
 
     if (temp.length === 0) {
         return true;
+    }
+
+};
+
+Basket.prototype.reduceQuantity = function (quantity) {
+
+    this.totalQuantity -= quantity;
+    for (var i = 0; i < 5; i++) {
+        if(this.basketBooks[i] > 0 && quantity > 0){
+            this.basketBooks[i]--;
+            quantity--;
+        }
     }
 
 };
