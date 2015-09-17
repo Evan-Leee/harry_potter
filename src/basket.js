@@ -2,10 +2,12 @@
 
 function Basket() {
 
-    this.basketBooks = [0, 0, 0, 0, 0];
+    this.basketBooks = [];
 }
 
 Basket.prototype.addBook = function (books) {
+
+    this.basketBooks = [0, 0, 0, 0, 0];
 
     for (var i = 0; i < books.length; i++) {
 
@@ -34,11 +36,10 @@ Basket.prototype.addBook = function (books) {
 };
 
 Basket.prototype.getVarity = function () {
-    var bookVarity = this.basketBooks.filter(function (quantity) {
+
+    return this.basketBooks.filter(function (quantity) {
         return quantity > 0;
     }).length;
-
-    return bookVarity;
 };
 
 Basket.prototype.isNull = function () {
@@ -47,25 +48,21 @@ Basket.prototype.isNull = function () {
         return quantity > 0;
     });
 
-    if (temp.length === 0) {
-        return true;
-    } else {
-        return false;
-    }
-
+    return temp.length === 0;
 };
 
-Basket.prototype.reduceQuantity = function (quantity) {
+Basket.prototype.reduceQuantity = function (discountQuantity) {
 
     for (var i = 0; i < 5; i++) {
-        if (this.basketBooks[i] > 0 && quantity > 0) {
+        if (this.basketBooks[i] > 0 && discountQuantity > 0) {
             this.basketBooks[i]--;
-            quantity--;
+            discountQuantity--;
         }
     }
 };
 
 Basket.prototype.getTotalQuantity = function () {
+
     var totalQuantity = 0;
     this.basketBooks.forEach(function (quantity) {
         totalQuantity += quantity;

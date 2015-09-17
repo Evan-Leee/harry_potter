@@ -29,22 +29,6 @@ describe('Discounter', function () {
             expect(price).toBe(16);
         });
 
-        it('when have 3 same books in basket', function () {
-            basket.basketBooks = [3, 0, 0, 0, 0];
-
-            var price = discounter.calculate(basket);
-
-            expect(price).toBe(24);
-        });
-
-        it('when have 4 same books in basket', function () {
-            basket.basketBooks = [4, 0, 0, 0, 0];
-
-            var price = discounter.calculate(basket);
-
-            expect(price).toBe(32);
-        });
-
         it('when have 5 same books in basket', function () {
             basket.basketBooks = [5, 0, 0, 0, 0];
 
@@ -67,14 +51,6 @@ describe('Discounter', function () {
             var price = discounter.calculate(basket);
 
             expect(price).toBe(21.6);
-        });
-
-        it('when have 4 different books in basket', function () {
-            basket.basketBooks = [1, 1, 1, 1, 0];
-
-            var price = discounter.calculate(basket);
-
-            expect(price).toBe(25.6);
         });
 
         it('when have 5 different books in basket', function () {

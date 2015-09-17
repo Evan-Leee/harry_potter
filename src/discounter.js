@@ -1,17 +1,18 @@
 'use strict';
 
 var Basket = require('./basket');
+var DISCOUNT_STANDARD = require('./lib/discount-standard');
 var ORIGINAL_PRICE = 8;
 
 function Discounter() {
-    this.total = 0;
-    this.STANDARD = [0, 0.8, 2.4, 6.4, 10];
-    this.discounts = [0, 0, 0, 0, 0];
+
+    this.discounts = [];
 }
 
 Discounter.prototype.calculate = function (basket) {
 
-    var totalPrice = ORIGINAL_PRICE * basket.getTotalQuantity();
+    var totalDiscount = ORIGINAL_PRICE * basket.getTotalQuantity();
+    this.discounts = [0, 0, 0, 0, 0];
 
     while (!basket.isNull()) {
         var varity = basket.getVarity();
@@ -21,17 +22,16 @@ Discounter.prototype.calculate = function (basket) {
 
     this.optimizeDiscounts();
 
-    for(var i = 0; i < this.discounts.length; i++){
-        this.total += this.discounts[i] * this.STANDARD[i];
+    for (var i = 0; i < this.discounts.length; i++) {
+        totalDiscount -= this.discounts[i] * DISCOUNT_STANDARD[i];
     }
 
-    totalPrice -= this.total;
-    return totalPrice;
+    return totalDiscount;
 };
 
-Discounter.prototype.optimizeDiscounts = function(){
+Discounter.prototype.optimizeDiscounts = function () {
 
-    var min = Math.min(this.discounts[2],this.discounts[4]);
+    var min = Math.min(this.discounts[2], this.discounts[4]);
     this.discounts[2] -= min;
     this.discounts[3] += 2 * min;
     this.discounts[4] -= min;

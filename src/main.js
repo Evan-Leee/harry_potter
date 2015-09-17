@@ -5,11 +5,8 @@ var Discounter = require('./discounter');
 
 var books = [
     new Book('first'),
-
     new Book('second'),
-
     new Book('third')
-
 ];
 
 var basket = new Basket();
