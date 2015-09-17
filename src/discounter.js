@@ -1,40 +1,40 @@
 'use strict';
-var _ = require('lodash');
+
 var Basket = require('./basket');
+var ORIGINAL_PRICE = 8;
 
 function Discounter() {
     this.total = 0;
-    this.standard = [0, 0.8, 2.4, 6.4, 10];
-    this.discountList = [0, 0, 0, 0, 0];
+    this.STANDARD = [0, 0.8, 2.4, 6.4, 10];
+    this.discounts = [0, 0, 0, 0, 0];
 }
 
 Discounter.prototype.calculate = function (basket) {
 
-    var totalPrice = 8 * basket.totalQuantity;
+    var totalPrice = ORIGINAL_PRICE * basket.getTotalQuantity();
 
-    this.discount(basket);
+    while (!basket.isNull()) {
+        var varity = basket.getVarity();
+        this.discounts[varity - 1]++;
+        basket.reduceQuantity(varity);
+    }
 
-    for(var i = 0; i < this.discountList.length; i++){
-        this.total += this.discountList[i] * this.standard[i];
+    this.optimizeDiscounts();
+
+    for(var i = 0; i < this.discounts.length; i++){
+        this.total += this.discounts[i] * this.STANDARD[i];
     }
 
     totalPrice -= this.total;
     return totalPrice;
 };
 
-Discounter.prototype.discount = function (basket) {
+Discounter.prototype.optimizeDiscounts = function(){
 
-    while (!basket.isNull()) {
-        basket.updateVarity();
-        this.discountList[basket.bookVarity - 1]++;
-        basket.reduceQuantity(basket.bookVarity);
-    }
-
-    var min = Math.min(this.discountList[2],this.discountList[4]);
-    this.discountList[2] -= min;
-    this.discountList[3] += 2 * min;
-    this.discountList[4] -= min;
+    var min = Math.min(this.discounts[2],this.discounts[4]);
+    this.discounts[2] -= min;
+    this.discounts[3] += 2 * min;
+    this.discounts[4] -= min;
 };
-
 
 module.exports = Discounter;

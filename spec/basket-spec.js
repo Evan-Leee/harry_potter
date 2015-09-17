@@ -11,11 +11,6 @@ describe('Basket', function () {
         basket = new Basket();
     });
 
-    it('can new a basket which container has 0 book', function () {
-
-        expect(basket.totalQuantity).toBe(0);
-    });
-
     describe('.addBook()', function () {
 
         beforeEach(function () {
@@ -34,13 +29,9 @@ describe('Basket', function () {
             expect(basket.basketBooks.toString()).toBe('2,1,2,0,0');
         });
 
-        it('can give totalQuantity a value', function () {
-            expect(basket.totalQuantity).toBe(5);
-        });
-
     });
 
-    describe('.updateVarity()', function () {
+    describe('.getVarity()', function () {
 
         beforeEach(function () {
             var books = [
@@ -54,11 +45,11 @@ describe('Basket', function () {
             ];
 
             basket.addBook(books);
-            basket.updateVarity();
+
         });
 
-        it('can give bookVarity a value', function () {
-            expect(basket.bookVarity).toBe(5);
+        it('should return the varity of book in basket', function () {
+            expect(basket.getVarity()).toBe(5);
         });
 
     });
@@ -80,7 +71,7 @@ describe('Basket', function () {
             ];
 
             basket.addBook(books);
-            expect(basket.isNull()).toBe(undefined);
+            expect(basket.isNull()).toBe(false);
         });
     });
 
@@ -100,9 +91,9 @@ describe('Basket', function () {
 
         it('can update the totalQuantity when the quantity need to be reduced', function () {
 
-            var previous = basket.totalQuantity;
+            var previous = basket.getTotalQuantity();
             basket.reduceQuantity(2);
-            var current = basket.totalQuantity;
+            var current = basket.getTotalQuantity();
             expect(previous !== current).toBe(true);
         });
 
