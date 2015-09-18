@@ -1,13 +1,8 @@
 'use strict';
-var Book = require('./book');
-var Basket = require('./basket');
-var Discounter = require('./discounter');
 
-var books = [
-    new Book('first'),
-    new Book('second'),
-    new Book('third')
-];
+var Basket = require('./src/basket');
+var Discounter = require('./src/discounter');
+var books = require('./seed/books');
 
 var basket = new Basket();
 basket.addBook(books);

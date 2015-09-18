@@ -1,7 +1,7 @@
 'use strict';
 
 var Basket = require('./basket');
-var DISCOUNT_STANDARD = require('./lib/discount-standard');
+var DISCOUNT_STANDARD = require('./../seed/discount-standard');
 var ORIGINAL_PRICE = 8;
 
 function Discounter() {
